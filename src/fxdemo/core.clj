@@ -26,8 +26,12 @@
         (f this prim-stage)
         (recur)))))
 
+(defn set-implicit-exit [value]
+  (Platform/setImplicitExit value))
+
 ;; Call this later once the GUI is started
 (defn testrun-gui []
+  (set-implicit-exit false)
   (Platform/runLater
    (fn []
      (let [s (deref appstate/state)]

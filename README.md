@@ -1,10 +1,21 @@
 # fxdemo
 
-A Clojure library designed to ... well, that part is up to you.
+Illustrates how to get JavaFX working in Clojure, 
+especially interactively in the REPL.
 
 ## Usage
 
-FIXME
+
+```
+fxdemo.example2> (main-async)
+#future[{:status :pending, :val nil} 0x7d800d2d]
+fxdemo.example2> 
+fxdemo.core> (testrun-gui)
+nil
+fxdemo.core> (testrun-gui)
+nil
+fxdemo.core> 
+```
 
 ## License
 
