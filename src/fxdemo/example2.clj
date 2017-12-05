@@ -7,7 +7,8 @@
     [javafx.scene.layout StackPane]
     [javafx.event ActionEvent EventHandler])
   (:gen-class
-    :extends javafx.application.Application))
+   :extends javafx.application.Application)
+  (:require [fxdemo.core :as core]))
 
 (defn -main [& args]
   (Application/launch fxdemo.example2 args))
