@@ -1,12 +1,13 @@
 (ns fxdemo.core
-  (:import
-    [javafx.application Application]
+  (:import   
+    [javafx.application Application Platform]
     [javafx.stage Stage]
     [javafx.scene Scene]
     [javafx.scene.control Button]
     [javafx.scene.layout StackPane]
     [javafx.event ActionEvent EventHandler])
-  (:require [clojure.core.async :as async]))
+  (:require [clojure.core.async :as async]
+            [fxdemo.appstate :as appstate]))
 
 (def gui-channel (async/chan 3))
 
@@ -25,5 +26,9 @@
         (f this prim-stage)
         (recur)))))
 
-
-
+;; Call this later once the GUI is started
+(defn testrun-gui []
+  (Platform/runLater
+   (fn []
+     (let [s (deref appstate/state)]
+       (test-gui-fun (:app s) (:primary-stage s))))))
