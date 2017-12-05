@@ -8,15 +8,16 @@
     [javafx.event ActionEvent EventHandler])
   (:gen-class
    :extends javafx.application.Application)
-  (:require [fxdemo.core :as core]))
+  (:require [fxdemo.core :as core]
+            [clojure.core.async :as async]
+            [fxdemo.appstate :as appstate]))
 
 (defn -main [& args]
   (Application/launch fxdemo.example2 args))
 
+(defn main-async [& args]
+  (future (Application/launch fxdemo.example2 args)))
+
 (defn -start [this primaryStage]
-  (let [root (doto (StackPane.)
-               (-> (.getChildren)
-                   (.add (Button. "Hello World!"))))]
-    (doto primaryStage
-      (.setScene (Scene. root 300 250))
-      (.show))))
+  (reset! appstate/state {:app this
+                          :primary-stage primaryStage}))
